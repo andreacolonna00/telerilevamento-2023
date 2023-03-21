@@ -33,6 +33,8 @@ plot(l2011$B4_sre, col=cl1)
 dev.off()  #dentro il pdf ci metto il grafico che voglio e con dev.off chiudo la finestra
 
 par(mfrow=c(2,1))
+
+
 plot(l2011[[3]], col=cl1)
 plot(l2011[[4]], col=cl1) # metto un grafico in ogni spazietto
 
@@ -55,3 +57,36 @@ plot(l2011[[3]], col=clr)
 cli <- colorRampPalette(c("darkorchid4","darkorchid2","darkorchid1")) (100)
 plot(l2011[[4]], col=cli)
 dev.off()
+
+# Plot of l2011 in the NIR channel (NIR band)
+plot(l2011$B4_sre, col=cli)
+# or:
+plot(l2011[[4]])
+
+# Landsat ETM+
+# b1 = blu
+# b2 = verde
+# b3 = rosso
+# b4 = infrarosso vicino NIR
+
+# plot RGB layers
+plotRGB(l2011, r=3, g=2, b=1, stretch="lin")
+plotRGB(l2011, r=3, g=4, b=2, stretch="lin")
+plotRGB(l2011, r=3, g=2, b=4, stretch="lin")
+
+plotRGB(l2011, r=3, g=4, b=2, stretch="hist")
+
+# Exercise: build a multiframe with visible RGB
+# (linear stretch) on top of false colours
+# (histogram stretch)
+par(mfrow=c(2,1))
+plotRGB(l2011, r=3, g=2, b=1, stretch="lin")
+plotRGB(l2011, r=3, g=4, b=2, stretch="hist")
+
+# Exercise: upload the image from 1988
+l1988 <- brick("p224r63_1988_masked.grd")
+plot(l1988)
+
+par(mfrow=c(2,1))
+plotRGB(l1988, r=4, g=3, b=2, stretch="lin")
+plotRGB(l2011, r=4, g=3, b=2, stretch="lin")
