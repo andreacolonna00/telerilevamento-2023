@@ -48,13 +48,19 @@ gc
 
 plotRGB(gc, r=1, g=2, b=3, stretch="lin")
 
+
 # change the stretch to histogram stretching
 plotRGB(gc, r=1, g=2, b=3, stretch="hist")
+
+gcc <- crop(gc, drawExtent()) # the image is quite big
+plotRGB(gcc, r=1, g=2, b=3, stretch="lin")
+
+ncell(gcc) # tells the number of pixels
 
 # classification
 
 # 1. Get values
-singlenr <- getValues(gc)
+singlenr <- getValues(gcc)
 singlenr
 
 # 2. Classify
@@ -62,13 +68,19 @@ kcluster <- kmeans(singlenr, centers = 3)
 kcluster
 
 # 3. Set values
-gcclass <- setValues(gc[[1]], kcluster$cluster) # assign new values to a raster object
+gcclass <- setValues(gcc[[1]], kcluster$cluster) # assign new values to a raster object
+gcclass
+plot(gcclass)
+
+# Class 1: sandstone
+# Class 2: volcanic rocks
+# Class 3: conglomerates
 
 cl <- colorRampPalette(c('yellow','black','red'))(100)
 plot(gcclass, col=cl)
 
 frequencies <- freq(gcclass)
-tot = 58076148
+total <- ncell(gcc)
 percentages = frequencies * 100 /  tot
 
 # Exercise: classify the map with 4 classes
