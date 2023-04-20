@@ -40,7 +40,7 @@ plot(TGr, col=cl)
 
 library(raster)
 
-setwd("~/lab/en") # Linux
+setwd("C:/lab/en") # Linux
 # setwd("C:/lab/en") # Windows
 # setwd("/Users/name/Desktop/lab/en") # Mac
 
