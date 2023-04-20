@@ -2,7 +2,7 @@ library(raster)
 # install.packages("RStoolbox")
 # library(RStoolbox)
 
-setwd("~/lab/") # Linux
+setwd("C:/lab/") # Linux
 # setwd("C:/lab/") # Windows
 # setwd("/Users/name/Desktop/lab/") # Mac
 
