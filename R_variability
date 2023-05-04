@@ -57,6 +57,8 @@ geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
 scale_fill_viridis(option = "inferno") +
 ggtitle("Standard deviation by viridis package")
 
+library(patchwork)
+
 # patchwork
 p1 <- ggplot() +
 geom_raster(sd3d, mapping =aes(x=x, y=y, fill=layer)) +
@@ -69,6 +71,20 @@ scale_fill_viridis(option = "inferno") +
 ggtitle("Standard deviation by viridis package")
 
 p1 + p2
+
+# Exercise: plot the original image (nir) and its standard deviation
+
+nird <- as.data.frame (nir, xy=T)
+
+# patchwork
+p3 <- ggplot() +
+geom_raster(nird, mapping =aes(x=x, y=y, fill=sentinel_1)) +
+scale_fill_viridis() +
+ggtitle("Standard deviation by viridis package")
+
+p3 + p1
+
+
 
 
 
