@@ -1,13 +1,13 @@
 # R code variability
 
 library(raster)
-# library(RStoolbox) # for image viewing and variability calculation
+library(RStoolbox) # for image viewing and variability calculation
 library(ggplot2) # for ggplot plotting
 library(patchwork) # multiframe with ggplot2 graphs
-# install.packages("viridis")
+install.packages("viridis")
 library(viridis)
 
-setwd("~/lab/") # Linux
+setwd("C:/lab/") # Linux
 # setwd("C:/lab/") # Windows
 # setwd("/Users/name/Desktop/lab/") # Mac
 
