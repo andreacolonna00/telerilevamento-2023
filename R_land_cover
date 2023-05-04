@@ -1,12 +1,12 @@
 # R_code_land_cover.r
 
 library(raster)
-# install.packages("ggplot2")
+install.packages("ggplot2")
 library(ggplot2)
-# install.packages("patchwork")
+install.packages("patchwork")
 library(patchwork) # for multiframe ggplot plotting
 
-setwd("~/lab/") # Linux
+setwd("C:/lab/") # Linux
 # setwd("C:/lab/") # Windows
 # setwd("/Users/name/Desktop/lab/") # Mac
 
