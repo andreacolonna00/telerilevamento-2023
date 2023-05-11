@@ -4,7 +4,7 @@ library(raster)
 library(ggplot2)
 library(viridis)
 
-setwd("~/lab/") # Linux
+setwd("C:/lab/") # Linux
 # setwd("C:/lab/") # Windows
 # setwd("/Users/name/Desktop/lab/") # Mac
 
