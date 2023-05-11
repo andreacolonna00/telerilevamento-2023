@@ -1,0 +1,10 @@
+# R code for downloading and visualizing Copernicus data
+
+# install.packages("ncdf4")
+library (ncdf4)
+library (raster)
+
+setwd("C:/lab/")
+# register and download data from:
+# https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
+
