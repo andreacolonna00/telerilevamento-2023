@@ -1,16 +1,31 @@
 library(raster)
-library(ggplot2)
 
 setwd("C:/lab/")
 
-s2_raster <- raster("T32TQQ_20230523T100601_TCI_10m.jp2")
+s2_april <- raster("23_April_2023.jp2")
+plot(s2_april)
 
-s2_rasterd <- as.data.frame (s2_raster, xy=T)
-names (s2_rasterd) <- c("x", "y", "z")
-head (s2_rasterd)
+ext <- c (730000,740000,4930000,4940000)
 
-ggplot() +
-geom_raster (s2_rasterd, mapping = aes (x=x, y=y, fill=z)) 
+s2_april_crop <- crop (s2_april, ext)
+plot (s2_april_crop)
+
+s2_april_cropd <- as.data.frame (s2_april_crop, xy=T)
+names (s2_april_cropd) <- c("x", "y", "z")
+head (s2_april_cropd)
+
+s2_may <- raster("23_May_2023.jp2")
+plot(s2_may)
+
+ext <- c (730000,740000,4930000,4940000)
+
+s2_may_crop <- crop (s2_may, ext)
+plot (s2_may_crop)
+
+s2_may_cropd <- as.data.frame (s2_may_crop, xy=T)
+names (s2_may_cropd) <- c("x", "y", "z")
+head (s2_may_cropd)
+
 
 
 
