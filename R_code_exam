@@ -10,9 +10,7 @@ names (s2_rasterd) <- c("x", "y", "z")
 head (s2_rasterd)
 
 ggplot() +
-geom_raster (s2_rasterd, mapping = aes (x=x, y=y, fill=z)) +
-scale_fill_viridis ()+
-ggtitle ("23 May")
+geom_raster (s2_rasterd, mapping = aes (x=x, y=y, fill=z)) 
 
 
 
