@@ -3,7 +3,6 @@ library(raster)
 setwd("C:/lab/")
 
 s2_april <- raster("23_April_2023.jp2")
-plot(s2_april)
 
 ext <- c (730000,740000,4930000,4940000)
 
@@ -15,7 +14,6 @@ names (s2_april_cropd) <- c("x", "y", "z")
 head (s2_april_cropd)
 
 s2_may <- raster("23_May_2023.jp2")
-plot(s2_may)
 
 ext <- c (730000,740000,4930000,4940000)
 
@@ -26,7 +24,9 @@ s2_may_cropd <- as.data.frame (s2_may_crop, xy=T)
 names (s2_may_cropd) <- c("x", "y", "z")
 head (s2_may_cropd)
 
-
+par(mfrow=c(2,1))
+plot(s2_april_crop)
+plot(s2_may_crop) 
 
 
 
