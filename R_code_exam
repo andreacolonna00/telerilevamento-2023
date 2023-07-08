@@ -3,30 +3,42 @@ library(raster)
 setwd("C:/lab/")
 
 s2_april <- raster("23_April_2023.jp2")
+s2_may <- raster("23_May_2023.jp2")
+s2_april_nir <- raster("23_April_2023_NIR.jp2")
+s2_may_nir <- raster("23_May_2023_NIR.jp2")
 
 ext <- c (730000,740000,4930000,4940000)
 
 s2_april_crop <- crop (s2_april, ext)
 plot (s2_april_crop)
 
-s2_april_cropd <- as.data.frame (s2_april_crop, xy=T)
-names (s2_april_cropd) <- c("x", "y", "z")
-head (s2_april_cropd)
-
-s2_may <- raster("23_May_2023.jp2")
-
 ext <- c (730000,740000,4930000,4940000)
 
 s2_may_crop <- crop (s2_may, ext)
 plot (s2_may_crop)
 
-s2_may_cropd <- as.data.frame (s2_may_crop, xy=T)
-names (s2_may_cropd) <- c("x", "y", "z")
-head (s2_may_cropd)
+cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
 
 par(mfrow=c(2,1))
-plot(s2_april_crop)
-plot(s2_may_crop) 
+plot(s2_april_crop, col=cl)
+plot(s2_may_crop, col=cl)
+
+s2_april_nir_crop <- crop (s2_april_nir, ext)
+plot (s2_april_nir_crop)
+
+ext <- c (730000,740000,4930000,4940000)
+
+s2_may_nir_crop <- crop (s2_may_nir, ext)
+plot (s2_may_nir_crop)
+
+cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
+
+par(mfrow=c(2,1))
+plot(s2_april_nir_crop, col=cl)
+plot(s2_may_nir_crop, col=cl)
+
+
+
 
 
 
