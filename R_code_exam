@@ -10,19 +10,40 @@ s2_april_blue <- raster("23_April_2023_blue.jp2")
 
 s2_may <- raster("23_May_2023.jp2")
 s2_may_nir <- raster("23_May_2023_NIR.jp2")
+s2_may_red <- raster("23_May_2023_red.jp2")
+s2_may_green <- raster("23_May_2023_green.jp2")
+s2_may_blue <- raster("23_May_2023_blue.jp2")
 
-rlist <- list.files(pattern="23_April_2023_")
-rlist
+rlist_april <- list.files(pattern="23_April_2023_")
+rlist_april
 
-import <- lapply(rlist,raster)
-import
+import_april <- lapply(rlist_april,raster)
+import_april
 
-TGr <- stack(import)
-TGr
+TGr_april <- stack(import_april)
+TGr_april
 
-plotRGB(TGr, 3,2,1, stretch="Lin")
+cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
+
+plotRGB(TGr_april, 3,2,1, stretch="Lin", col=cl)
+
+rlist_may <- list.files(pattern="23_May_2023_")
+rlist_may
+
+import_may <- lapply(rlist_may,raster)
+import_may
+
+TGr_may <- stack(import_may)
+TGr_may
+
+plotRGB(TGr_may, 3,2,1, stretch="Lin")
 
 ext <- c (730000,740000,4930000,4940000)
+
+par(mfrow=c(2,1))
+plotRGB(TGr_april, 3,2,1, ext= ext)
+plotRGB(TGr_may, 3,2,1, ext= ext)
+
 
 s2_april_crop <- crop (s2_april, ext)
 plot (s2_april_crop)
