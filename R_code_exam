@@ -46,8 +46,6 @@ plotRGB(TGr_may, 3,2,1, stretch="Lin", ext= ext)
 s2_april_crop <- crop (s2_april, ext)
 plot (s2_april_crop)
 
-ext <- c (730000,740000,4930000,4940000)
-
 s2_may_crop <- crop (s2_may, ext)
 plot (s2_may_crop)
 
@@ -57,19 +55,11 @@ par(mfrow=c(2,1))
 plot(s2_april_crop, col=cl)
 plot(s2_may_crop, col=cl)
 
-s2_april_nir_crop <- crop (s2_april_nir, ext)
-plot (s2_april_nir_crop)
+ndvi_may = (TGr_may[[3]] - TGr_may[[4]]) / (TGr_may[[3]] + TGr_may[[4]])
 
-ext <- c (730000,740000,4930000,4940000)
+cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+plot(ndvi_may, col=cl)
 
-s2_may_nir_crop <- crop (s2_may_nir, ext)
-plot (s2_may_nir_crop)
-
-cl <- colorRampPalette(c('aquamarine4','aquamarine3','aquamarine2','aquamarine1'))(100) # specifying a color scheme
-
-par(mfrow=c(2,1))
-plot(s2_april_nir_crop, col=cl)
-plot(s2_may_nir_crop, col=cl)
 
 
 
