@@ -11,7 +11,7 @@ s2_april_blue <- raster("23_April_2023_blue.jp2")
 s2_may <- raster("23_May_2023.jp2")
 s2_may_nir <- raster("23_May_2023_NIR.jp2")
 
-rlist <- list.files(pattern="23_")
+rlist <- list.files(pattern="23_April_2023_")
 rlist
 
 import <- lapply(rlist,raster)
@@ -19,9 +19,8 @@ import
 
 TGr <- stack(import)
 TGr
-plot(TGr)
 
-plotRGB(TGr, 1, 2, 3, stretch="Lin")
+plotRGB(TGr, 3,2,1, stretch="Lin")
 
 ext <- c (730000,740000,4930000,4940000)
 
