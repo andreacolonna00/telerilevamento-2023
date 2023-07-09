@@ -23,8 +23,6 @@ import_april
 TGr_april <- stack(import_april)
 TGr_april
 
-cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
-
 plotRGB(TGr_april, 3,2,1, stretch="Lin", col=cl)
 
 rlist_may <- list.files(pattern="23_May_2023_")
@@ -41,8 +39,8 @@ plotRGB(TGr_may, 3,2,1, stretch="Lin")
 ext <- c (730000,740000,4930000,4940000)
 
 par(mfrow=c(2,1))
-plotRGB(TGr_april, 3,2,1, ext= ext)
-plotRGB(TGr_may, 3,2,1, ext= ext)
+plotRGB(TGr_april, 3,2,1, stretch="Lin", ext= ext)
+plotRGB(TGr_may, 3,2,1, stretch="Lin", ext= ext)
 
 
 s2_april_crop <- crop (s2_april, ext)
