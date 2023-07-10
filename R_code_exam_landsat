@@ -1,0 +1,73 @@
+library(raster)
+
+setwd("C:/lab/landsat/")
+
+l_april_nir <- raster("l_april_nir.tif")
+l_april_red <- raster("l_april_red.tif")
+l_april_green <- raster("l_april_green.tif")
+l_april_blue <- raster("l_april_blue.tif")
+
+l_may_nir <- raster("l_may_nir.tif")
+l_may_red <- raster("l_may_red.tif")
+l_may_green <- raster("l_may_green.tif")
+l_may_blue <- raster("l_may_blue.tif")
+
+rlist_april <- list.files(pattern="l_april_")
+rlist_april
+
+import_april <- lapply(rlist_april,raster)
+import_april
+
+TGr_april <- stack(import_april)
+TGr_april
+
+plotRGB(TGr_april, 3,2,1, stretch="Lin", col=cl)
+
+rlist_may <- list.files(pattern="l_may_")
+rlist_may
+
+import_may <- lapply(rlist_may,raster)
+import_may
+
+TGr_may <- stack(import_may)
+TGr_may
+
+plotRGB(TGr_may, 3,2,1, stretch="Lin")
+
+ext <- c (730000,740000,4930000,4940000)
+
+par(mfrow=c(2,1))
+plotRGB(TGr_april, 3,2,1, stretch="Lin", ext= ext)
+plotRGB(TGr_may, 3,2,1, stretch="Lin", ext= ext)
+
+l_april_nir_crop <- crop (l_april_nir, ext)
+l_april_green_crop <- crop (l_april_green, ext)
+l_april_red_crop <- crop (l_april_red, ext)
+
+l_may_nir_crop <- crop (l_may_nir, ext)
+l_may_green_crop <- crop (l_may_green, ext)
+l_may_red_crop <- crop (l_may_red, ext)
+
+cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
+
+par(mfrow=c(2,1))
+plot(l_april_crop, col=cl)
+plot(l_may_crop, col=cl)
+
+dev.off()
+
+dvi_april = (l_april_nir_crop - l_april_red_crop) 
+ndvi_april = (l_april_nir_crop - l_april_red_crop) / (l_april_nir_crop + l_april_red_crop)
+
+cl <- colorRampPalette(c('darkred','azure','blue'))(100) # specifying a color scheme
+plot(ndvi_april, col=cl)
+
+dvi_may = (l_may_nir_crop - l_may_red_crop)
+ndvi_may = (l_may_nir_crop - l_may_red_crop) / (l_may_nir_crop + l_may_red_crop)
+plot(ndvi_may, col=cl)
+
+par(mfrow=c(2,2))
+plot(dvi_april, col=cl)
+plot(dvi_may, col=cl)
+plot(ndvi_april, col=cl)
+plot(ndvi_may, col=cl)
