@@ -42,12 +42,13 @@ par(mfrow=c(2,1))
 plotRGB(TGr_april, 3,2,1, stretch="Lin", ext= ext)
 plotRGB(TGr_may, 3,2,1, stretch="Lin", ext= ext)
 
-
 s2_april_crop <- crop (s2_april, ext)
-plot (s2_april_crop)
+s2_april_nir_crop <- crop (s2_april_nir, ext)
+s2_april_green_crop <- crop (s2_april_green, ext)
 
 s2_may_crop <- crop (s2_may, ext)
-plot (s2_may_crop)
+s2_may_nir_crop <- crop (s2_may_nir, ext)
+s2_may_green_crop <- crop (s2_may_green, ext)
 
 cl <- colorRampPalette(c('aquamarine','brown1','chartreuse','blue'))(100) # specifying a color scheme
 
@@ -55,12 +56,23 @@ par(mfrow=c(2,1))
 plot(s2_april_crop, col=cl)
 plot(s2_may_crop, col=cl)
 
-ndvi_may = (TGr_may[[3]] - TGr_may[[4]]) / (TGr_may[[3]] + TGr_may[[4]])
+dev.off()
 
-cl <- colorRampPalette(c('darkblue','yellow','red','black'))(100) # specifying a color scheme
+dvi_april = (s2_april_nir_crop - s2_april_red_crop) 
+ndvi_april = (s2_april_nir_crop - s2_april_red_crop) / (s2_april_nir_crop + s2_april_red_crop)
+
+cl <- colorRampPalette(c('darkred','azure','blue'))(100) # specifying a color scheme
+plot(ndvi_april, col=cl)
+
+dvi_may = (s2_may_nir_crop - s2_may_red_crop)
+ndvi_may = (s2_may_nir_crop - s2_may_red_crop) / (s2_may_nir_crop + s2_may_red_crop)
 plot(ndvi_may, col=cl)
 
-
+par(mfrow=c(2,2))
+plot(dvi_april, col=cl)
+plot(dvi_may, col=cl)
+plot(ndvi_april, col=cl)
+plot(ndvi_may, col=cl)
 
 
 
