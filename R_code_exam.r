@@ -1,6 +1,9 @@
 # Analysis of satellite data from Sentinel to observe the effects of floods in the Emilia-Romagna region (Italy), may 2023
 
 library(raster)
+library(ggplot2)
+library(viridis)
+library(patchwork)
 
 setwd("C:/lab/sentinel/")
 
@@ -109,7 +112,19 @@ par(mfrow=c(1,2)) # comparing infrared image with ndwi
 plotRGB(stack_may, 3,2,1, stretch="Lin", ext= ext)
 plot(ndwi_may, col=cl)
 
+s2_may_nir_cropd <- as.data.frame(s2_may_nir_crop, xy=T)
+p1 <- ggplot() +
+geom_raster(s2_may_nir_cropd, mapping =aes(x=x, y=y, fill=X23_May_2023_nir)) +
+scale_fill_viridis(option = "magma") +
+ggtitle("Maggio 2023 Infrarosso")
 
+ndwi_mayd<- as.data.frame(ndwi_may, xy=T)
+p2 <- ggplot() +
+geom_raster(ndwi_mayd, mapping =aes(x=x, y=y, fill=layer)) +
+scale_fill_viridis(option = "plasma") +
+ggtitle("Maggio 2023 NDWI")
+
+p1 + p2
 
 
 
