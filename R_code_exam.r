@@ -112,6 +112,8 @@ par(mfrow=c(1,2)) # comparing infrared image with ndwi
 plotRGB(stack_may, 3,2,1, stretch="Lin", ext= ext)
 plot(ndwi_may, col=cl)
 
+
+# plotting with ggplot
 s2_may_nir_cropd <- as.data.frame(s2_may_nir_crop, xy=T)
 p1 <- ggplot() +
 geom_raster(s2_may_nir_cropd, mapping =aes(x=x, y=y, fill=X23_May_2023_nir)) +
