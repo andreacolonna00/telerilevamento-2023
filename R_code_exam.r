@@ -69,25 +69,33 @@ s2_may_nir_crop <- crop (s2_may_nir, ext)
 s2_may_green_crop <- crop (s2_may_green, ext)
 s2_may_red_crop <- crop (s2_may_red, ext)
 
-cl <- colorRampPalette(c('darkred','bisque2','blue','yellow'))(100) # specifying a color scheme
+cl <- colorRampPalette(c('darkred','bisque2','blue','green'))(100) # specifying a color scheme
 
 dev.off()
 
+dvi_april = (s2_april_nir_crop - s2_april_red_crop) # dvi (difference vegetation index)
+dvi_may = (s2_may_nir_crop - s2_may_red_crop)
 ndvi_april = (s2_april_nir_crop - s2_april_red_crop) / (s2_april_nir_crop + s2_april_red_crop) # ndvi (normalized difference vegetation index)
 ndvi_may = (s2_may_nir_crop - s2_may_red_crop) / (s2_may_nir_crop + s2_may_red_crop)
 
-par(mfrow=c(1,2)) # plotting ndvi from April and May
-plot(ndvi_april, col=cl)
-plot(ndvi_may, col=cl)
+par(mfrow=c(2,2)) # plotting ndvi from April and May
+plot(dvi_april, col=cl, main = "dvi Aprile")
+plot(dvi_may, col=cl, main = "dvi Maggio")
+plot(ndvi_april, col=cl, main = "ndvi Aprile")
+plot(ndvi_may, col=cl, main = "ndvi Maggio")
 
 dev.off()
 
+dwi_april = (s2_april_green_crop - s2_april_nir_crop) # dwi (difference water index)
+dwi_may = (s2_may_green_crop - s2_may_nir_crop)
 ndwi_april = (s2_april_green_crop - s2_april_nir_crop) / (s2_april_green_crop + s2_april_nir_crop) # ndwi (normalized difference water index)
 ndwi_may = (s2_may_green_crop - s2_may_nir_crop) / (s2_may_green_crop + s2_may_nir_crop)
 
-par(mfrow=c(1,2)) # plotting ndwi from April and May
-plot(ndwi_april, col=cl)
-plot(ndwi_may, col=cl)
+par(mfrow=c(2,2)) # plotting ndwi from April and May
+plot(dwi_april, col=cl, main = "dwi Aprile")
+plot(dwi_may, col=cl, main = "dwi Maggio")
+plot(ndwi_april, col=cl, main = "ndwi Aprile")
+plot(ndwi_may, col=cl, main = "ndwi Maggio")
 
 dev.off()
 par(mfrow=c(2,2)) # plotting dwi and ndwi from April and May
